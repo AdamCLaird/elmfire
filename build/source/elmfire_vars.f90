@@ -366,20 +366,20 @@ TYPE(FUEL_MODEL_TABLE_TYPE), DIMENSION(0:303,30:120) :: FUEL_MODEL_TABLE_2D !Tab
 INTEGER, PARAMETER :: NUM_BUILDING_FUEL_MODELS=100
 TYPE :: BUILDING_FUEL_MODEL_TABLE_TYPE
    CHARACTER(80) :: SHORTNAME
-   REAL :: T_1MW
-   REAL :: T_EARLY
-   REAL :: T_FULLDEV
-   REAL :: T_DECAY
-   REAL :: FUEL_LOAD
-   REAL :: HRRPUA_PEAK
-   REAL :: FTP_CRIT
-   REAL :: Q_CRIT
-   REAL :: ABSORPTIVITY
-   REAL :: HEIGHT
-   REAL :: NONBURNABLE_FRAC
-   REAL :: P_IGNITION
-   REAL :: HARDENING_FACTOR
-   REAL :: TAU_IGN
+   REAL :: T_1MW              ! 
+   REAL :: T_EARLY            ! Early stage duration
+   REAL :: T_FULLDEV          ! Fully developed stage duration
+   REAL :: T_DECAY            ! Decay stage duration
+   REAL :: FUEL_LOAD          ! 
+   REAL :: HRRPUA_PEAK        ! Peak heat release rate per unit area
+   REAL :: FTP_CRIT           ! Critical flux time product
+   REAL :: Q_CRIT             ! 
+   REAL :: ABSORPTIVITY       ! House radiation absorptivity (-)
+   REAL :: HEIGHT             ! Building height
+   REAL :: NONBURNABLE_FRAC   ! Nonburnable fraction (-)
+   REAL :: P_IGNITION         ! Probability of ignition (%)
+   REAL :: HARDENING_FACTOR   ! Building hardening factor (-)
+   REAL :: TAU_IGN            ! 
 END TYPE
 TYPE(BUILDING_FUEL_MODEL_TABLE_TYPE), DIMENSION(0:NUM_BUILDING_FUEL_MODELS) :: BUILDING_FUEL_MODEL_TABLE
 

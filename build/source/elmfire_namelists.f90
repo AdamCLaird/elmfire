@@ -103,11 +103,11 @@ IF (IRANK_WORLD .EQ. 0) WRITE(*,*) 'Reading &INPUTS namelist group'
 !Set default values:
 ADJ_FILENAME                   = ' '
 ASP_FILENAME                   = ' '
-BLDG_AREA_FILENAME             = ' '
-BLDG_FOOTPRINT_FRAC_FILENAME   = ' '
-BLDG_FUEL_MODEL_FILENAME       = ' '
-BLDG_NONBURNABLE_FRAC_FILENAME = ' '
-BLDG_SEPARATION_DIST_FILENAME  = ' '
+BLDG_AREA_FILENAME             = ' '      ! Structure area, m² (32-bit floating)
+BLDG_FOOTPRINT_FRAC_FILENAME   = ' '      ! Structure footprint fraction (32-bit floating)
+BLDG_FUEL_MODEL_FILENAME       = ' '      ! Structure fuel model in a cell (16-bit integer)
+BLDG_NONBURNABLE_FRAC_FILENAME = ' '      ! Nonburnable fraction of structure in a cell (32-bit floating)
+BLDG_SEPARATION_DIST_FILENAME  = ' '      ! Separation distance, m (32-bit floating)
 CBD_FILENAME                   = ' '
 CBD_TIMES_100                  = .TRUE.
 CBH_FILENAME                   = ' '
@@ -257,7 +257,7 @@ DUMP_FLAME_LENGTH                 = .FALSE.
 DUMP_FLIN                         = .FALSE.
 DUMP_HOURLY_RASTERS               = .FALSE.
 DUMP_HPUA                         = .FALSE.
-DUMP_HRR_TRANSIENT                = .FALSE.  
+DUMP_HRR_TRANSIENT                = .FALSE.     ! Heat release rate per unit area at certain time (kW/m2)
 DUMP_PHI                          = .FALSE. 
 DUMP_REACTION_INTENSITY           = .FALSE. 
 DUMP_SPOTTING_IGNITION_TIME       = .FALSE. 
@@ -267,9 +267,9 @@ DUMP_SURFACE_FIRE_AREA            = .FALSE.
 DUMP_TAGGED                       = .FALSE. 
 DUMP_TIME_OF_ARRIVAL              = .FALSE. 
 DUMP_TIMINGS                      = .FALSE.
-DUMP_TOTAL_DFC_RECEIVED           = .FALSE.
-DUMP_TOTAL_RAD_RECEIVED           = .FALSE. 
-DUMP_TRANSIENT_ACREAGE            = .FALSE. 
+DUMP_TOTAL_DFC_RECEIVED           = .FALSE.     ! Total heat flux incident from direct flame contact (kW/m2)
+DUMP_TOTAL_RAD_RECEIVED           = .FALSE.     ! Total heat flux incident from radiation (kW/m2)
+DUMP_TRANSIENT_ACREAGE            = .FALSE.
 DUMP_VELOCITY                     = .FALSE. 
 DUMP_WD20                         = .FALSE. 
 DUMP_WS20                         = .FALSE. 
@@ -642,15 +642,15 @@ NAMELIST /WUI/ BLDG_AREA_CONSTANT, BLDG_NONBURNABLE_FRAC_CONSTANT, BLDG_SEPARATI
 
 IF (IRANK_WORLD .EQ. 0) WRITE(*,*) 'Reading &WUI namelist group'
 
-BLDG_AREA_CONSTANT                    = 20.0
-BLDG_SEPARATION_DIST_CONSTANT         = 10.0
-BLDG_NONBURNABLE_FRAC_CONSTANT        = 0.0
-BLDG_FOOTPRINT_FRAC_CONSTANT          = 1.0
-BLDG_FUEL_MODEL_CONSTANT              = 1
-BLDG_SPREAD_MODEL_TYPE                = 1 ! 1 = Hamada, 2 = UCB / UMD
+BLDG_AREA_CONSTANT                    = 20.0    ! Structure area (m2)
+BLDG_SEPARATION_DIST_CONSTANT         = 10.0    ! Separation distance (m)
+BLDG_NONBURNABLE_FRAC_CONSTANT        = 0.0     ! Nonburnable fraction of structure in a cell
+BLDG_FOOTPRINT_FRAC_CONSTANT          = 1.0     ! Structure footprint fraction
+BLDG_FUEL_MODEL_CONSTANT              = 1       ! Structure fuel model in a cell
+BLDG_SPREAD_MODEL_TYPE                = 1       ! 1 = Hamada, 2 = UCB / UMD
 USE_BLDG_SPREAD_MODEL                 = .FALSE.
 USE_CONSTANT_BLDG_SPREAD_MODEL_PARAMS = .TRUE.
-GLOBAL_HARDENING_FACTOR              = 1.0
+GLOBAL_HARDENING_FACTOR              = 1.0      ! Global hardening factor (-)
 
 READ(LUINPUT,NML=WUI,IOSTAT=IOS)
 IF (IOS > 0) THEN
