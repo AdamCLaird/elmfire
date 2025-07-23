@@ -3,16 +3,28 @@
 ## Updated: 07-22-2025
 
 FC := mpifort
-FFLAGS := -O0 -g -Wall -cpp -ffree-line-length-none
+FFLAGS := -O0 -g -Wall -cpp -ffree-line-length-none -D_WUI\
+          -Wno-conversion \
+          -Wno-unused-dummy-argument \
+          -Wno-character-truncation \
+          -Wno-unused-variable \
+          -Wno-unused-label
 SCRATCH_DIR := scratch
-VPATH := ../source ./unit-independent ./unit-dependent ./component ./integration ./regression
+VPATH := ../source ./unit-independent ./unit-dependent ./component \
+./integration ./regression
 
 # List of test scripts broken down by test type
-UNIT_INDEPENDENT := test_half_superbee test_calc_cfl test_rk2_integrate test_calc_normal_vectors
-UNIT_DEPENDENT   := test_tag_band
-#COMPONENT :=
-#INTEGRATION :=
-#REGRESSION :=
+UNIT_INDEPENDENT := \
+test_calc_cfl \
+test_calc_normal_vectors \
+test_ellipse_ucb \
+test_half_superbee \
+test_rk2_integrate 
+UNIT_DEPENDENT   := \
+test_tag_band
+COMPONENT := 
+INTEGRATION := 
+REGRESSION := 
 
 ALL_TEST_NAMES := $(UNIT_INDEPENDENT) $(UNIT_DEPENDENT) # $(COMPONENT) $(INTEGRATION) $(REGRESSION)
 ALL_TESTS := $(addprefix $(SCRATCH_DIR)/, $(ALL_TEST_NAMES))

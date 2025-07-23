@@ -32,13 +32,14 @@ can be ran in isolation. This is the lowest level to test.
 - `test_half_superbee.f90`: Tests HALF_SUPERBEE(R) flux limiter function
 - `test_calc_cfl.f90`: Tests CALC_CFL(DT) subroutine that calculates time step based on the Courant–Friedrichs–Lewy condition
 - `test_rk2_integrate.f90`: Tests RK2_INTEGRATE(DT, ISTEP) subroutine that performs 2nd order Runge-Kutta time integration
+- `test_calc_normal_vectors.f90`: Tests CALC_NORMAL_VECTORS(...) subroutine that calculates outward normal directions of the fireline
 
 
 ## Unit-Dependent Testing
 These functions/subroutines have dependencies on other functions/subroutines,
 but are still small enough to be ran as a unit.
 
-- ``
+- `test_tag_band.f90`: Tests TAG_BAND(...) subroutine that tags cells for narrow banded solver
 
 ## Component Testing
 

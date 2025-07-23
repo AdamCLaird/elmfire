@@ -1,6 +1,5 @@
 !> test_calc_normal_vectors.f90
 !! Unit test for subroutine CALC_NORMAL_VECTORS(...) in elmfire_level_set.f90
-!! Copy and modify for new subroutines/functions
 !! Updated: 07-22-2025
 
 ! *****************************************************************************
@@ -33,18 +32,16 @@ ALLOCATE(C)
 LIST_TAGGED%HEAD => C
 LIST_TAGGED%NUM_NODES = 1
 
-HALFRCELLSIZE
-
 ! Case 1: Gradient in x only --------------------------------------------------
 PHIP(4,3) = 1.0
 PHIP(2,3) = -1.0
-CALL CHECK(1, 1.0, 0.0, "X Gradient")
+CALL CHECK(1, HALFRCELL, 1.0, 0.0, "X Gradient")
 
 ! Case 2: Gradient in y only --------------------------------------------------
 PHIP = 0.0
 PHIP(3,4) = 2.0
 PHIP(3,2) = -2.0
-CALL CHECK(1, 0.0, 1.0, "Y Gradient")
+CALL CHECK(1, HALFRCELL, 0.0, 1.0, "Y Gradient")
 
 ! Case 3: Diagonal gradient (1,1) ---------------------------------------------
 PHIP = 0.0
@@ -52,19 +49,19 @@ PHIP(4,3) = 1.0
 PHIP(2,3) = -1.0
 PHIP(3,4) = 1.0
 PHIP(3,2) = -1.0
-CALL CHECK(1, SQRT(0.5), SQRT(0.5), "XY Diagonal")
+CALL CHECK(1, HALFRCELL, SQRT(0.5), SQRT(0.5), "XY Diagonal")
 
-! Case 4: Very large gradient (test clamping) ---------------------------------
+! Case 4: Clamp Gradient ------------------------------------------------------
 PHIP = 0.0
 PHIP(4,3) = 1.0E10
 PHIP(2,3) = -1.0E10
 PHIP(3,4) = 1.0E10
 PHIP(3,2) = -1.0E10
-CALL CHECK(1, SQRT(0.5), SQRT(0.5), "Clamped Gradient")
+CALL CHECK(1, HALFRCELL, SQRT(0.5), SQRT(0.5), "Clamped Gradient")
 
-! Case 5: Zero gradient (test epsilon handling)
+! Case 5: Zero gradient -------------------------------------------------------
 PHIP = 0.0
-CALL CHECK(1, 0.0, 0.0, "Zero Gradient")
+CALL CHECK(1, HALFRCELL, 0.0, 0.0, "Zero Gradient")
 
 
 ! Check outputs and print results
@@ -78,15 +75,15 @@ END IF
 CONTAINS
 
 ! =============================================================================
-SUBROUTINE CHECK(ISTEP, EXPECTED_X, EXPECTED_Y, LABEL)
+SUBROUTINE CHECK(ISTEP, HALFRCELL, EXPECTED_X, EXPECTED_Y, LABEL)
 ! =============================================================================
 INTEGER, INTENT(IN) :: ISTEP                    ! Inputs
-REAL,    INTENT(IN) :: EXPECTED_X, EXPECTED_Y
+REAL,    INTENT(IN) :: HALFRCELL, EXPECTED_X, EXPECTED_Y
 CHARACTER(*), INTENT(IN) :: LABEL
 REAL, PARAMETER :: EPS = 1E-5                   ! Locals
 REAL :: NX, NY
 
-CALL CALC_NORMAL_VECTORS(ISTEP, HALFRCELLSIZE)
+CALL CALC_NORMAL_VECTORS(ISTEP, HALFRCELL)
 NX = C%NORMVECTORX
 NY = C%NORMVECTORY
 

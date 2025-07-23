@@ -70,6 +70,7 @@ SUBROUTINE CHECK(DT_IN, ISTEP, EXPECTED, LABEL)
 ! =============================================================================
 REAL, INTENT(IN) :: DT_IN, EXPECTED ! Inputs
 INTEGER, INTENT(IN) :: ISTEP
+CHARACTER(*), INTENT(IN) :: LABEL
 REAL :: DT                          ! Locals
 REAL, PARAMETER :: EPSILON = 1.0E-6
 

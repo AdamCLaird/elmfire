@@ -8,21 +8,41 @@ set -e
 COMMAND=$1
 TARGET=$2
 SCRATCH="scratch"
+TEST_DIRS=("unit-independent" "unit-dependent" "component" "integration" "regression")
 
 if [[ "$COMMAND" == "run" ]]; then
     echo "Building test binaries..."
-    make
 
     if [[ "$TARGET" == "all" || -z "$TARGET" ]]; then
+        make
         echo "Running all tests..."
         make run
     else
-        TEST_BIN="test_${TARGET}"
-        if [[ -x "$SCRATCH/$TEST_BIN" ]]; then
-            echo "Running $TEST_BIN..."
-            "./$SCRATCH/$TEST_BIN"
+        TEST_NAME="test_${TARGET}"
+        TEST_BIN="${SCRATCH}/${TEST_NAME}"
+
+        # Find the source file in any known directory
+        FOUND_SRC=""
+        for dir in "${TEST_DIRS[@]}"; do
+            if [[ -f "${dir}/${TEST_NAME}.f90" ]]; then
+                FOUND_SRC="${dir}/${TEST_NAME}.f90"
+                break
+            fi
+        done
+
+        # Error message if test name not found
+        if [[ -z "$FOUND_SRC" ]]; then
+            echo "Error: Test source for '$TEST_NAME' not found in any test directory."
+            exit 1
+        fi
+
+        make "$TEST_BIN"
+
+        if [[ -x "$TEST_BIN" ]]; then
+            echo "Running $TEST_NAME..."
+            "./$TEST_BIN"
         else
-            echo "Error: Test binary '$TEST_BIN' not found. Did it compile?"
+            echo "Error: Test binary '$TEST_BIN' not found or not executable."
             exit 1
         fi
     fi

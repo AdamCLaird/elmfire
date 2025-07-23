@@ -30,7 +30,7 @@ C1%NEXT => C2
 C2%NEXT => NULL()
 LIST_TAGGED%HEAD => C1
 LIST_TAGGED%NUM_NODES = 2
-CALL CHECK(1.0, 2.0)
+CALL CHECK(1.0, 2.0, "Normal speed")
 
 ! Case 2: All nodes burned ----------------------------------------------------
 C1%BURNED = .TRUE.
@@ -54,7 +54,7 @@ C2%NEXT => C3
 C3%UX = 0.5; C3%UY = 0.5; C3%BURNED = .FALSE.
 C3%NEXT => NULL()
 LIST_TAGGED%NUM_NODES = 3
-CALL CHECK(1.0, 0.08, "3 nodes")
+CALL CHECK(1.0, 0.08, "Three nodes")
 
 ! Check outputs and print results
 IF (NFAIL == 0) THEN
@@ -70,6 +70,7 @@ CONTAINS
 SUBROUTINE CHECK(DT_IN, EXPECTED, LABEL)
 ! =============================================================================
 REAL, INTENT(IN) :: DT_IN, EXPECTED ! Inputs
+CHARACTER(*), INTENT(IN) :: LABEL
 REAL :: DT                          ! Locals
 REAL, PARAMETER :: EPSILON = 1.0E-4
 
