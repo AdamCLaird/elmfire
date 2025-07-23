@@ -1,11 +1,13 @@
-!> test_half_superbee.f90
-!! Unit test for function HALF_SUPERBEE(R) in elmfire_level_set.f90
-!! Updated: 07-21-2025
+!> test_template.f90
+!! Template for unit tests in ELMFIRE
+!! Copy and modify for new subroutines/functions
+!! Updated: [DATE]
 
 ! *****************************************************************************
-PROGRAM TEST_HALF_SUPERBEE
+PROGRAM TEST_TEMPLATE
 ! *****************************************************************************
 
+USE ELMFIRE_VARS
 USE ELMFIRE_LEVEL_SET
 
 IMPLICIT NONE
@@ -13,23 +15,20 @@ IMPLICIT NONE
 ! Locals
 INTEGER :: NFAIL = 0
 
-PRINT *, 'TESTING HALF_SUPERBEE...'
+PRINT *, 'TESTING TEMPLATE...'
 
-! CHECK(INPUT, TRUE OUTPUT)
-CALL CHECK(-1.0E6, 0.0)
-CALL CHECK(-1.0E-12, 0.0)
-CALL CHECK( 1.0E-12, 1.0E-12)
-CALL CHECK( 1.0E-6, 1.0E-6)
-CALL CHECK( 1.0E6, 1.0)
-CALL CHECK( 1.0E38, 1.0)
-CALL CHECK(-1.0, 0.0)
-CALL CHECK( 0.0, 0.0)
-CALL CHECK( 0.25, 0.25)
-CALL CHECK( 0.5, 0.5)
-CALL CHECK( 0.75, 0.5)
-CALL CHECK( 1.0, 0.5)
-CALL CHECK( 1.5, 0.75)
-CALL CHECK( 2.0, 1.0)
+! Setup 
+! Allocate memory, initialize relevant fields
+! For example:
+! REAL :: DT, EXPECTED
+! TYPE(NODE), POINTER :: C
+! ALLOCATE(C)
+! C%FIELD = value
+! ...
+
+! Test Cases
+! CALL CHECK(<input1>, <expected1>)
+! CALL CHECK(<input2>, <expected2>)
 
 ! Check outputs and print results
 IF (NFAIL == 0) THEN
@@ -42,21 +41,23 @@ END IF
 CONTAINS
 
 ! =============================================================================
-SUBROUTINE CHECK(R, EXPECTED)
+SUBROUTINE CHECK(INPUT, EXPECTED)
 ! =============================================================================
-REAL, INTENT(IN) :: R, EXPECTED   ! Inputs
-REAL :: RESULT                    ! Locals
+REAL, INTENT(IN) :: INPUT, EXPECTED ! Inputs
+REAL :: RESULT                      ! Locals
 REAL, PARAMETER :: EPSILON = 1.0E-6
 
-RESULT = HALF_SUPERBEE(R)         ! Use function & check values
+! RESULT = MYFUNC(INPUT)
+! or
+! CALL MYSUB(INPUT, ...)
 IF (ABS(RESULT - EXPECTED) > EPSILON) THEN
-  PRINT *, 'FAIL: R=', R, ' EXPECTED=', EXPECTED, ' GOT=', RESULT
-  NFAIL = NFAIL + 1
-END IF 
+    PRINT *, 'FAIL: INPUT=', INPUT, ' EXPECTED=', EXPECTED, ' GOT=', RESULT
+    NFAIL = NFAIL + 1
+END IF
 ! =============================================================================
 END SUBROUTINE CHECK
 ! =============================================================================
 
 ! *****************************************************************************
-END PROGRAM
+END PROGRAM TEST_TEMPLATE
 ! *****************************************************************************
