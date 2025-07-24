@@ -29,10 +29,19 @@ Here we provide details of the current tests in the suite.
 These functions/subroutines are independent of other functions/subroutines and 
 can be ran in isolation. This is the lowest level to test. 
 
-- `test_half_superbee.f90`: Tests HALF_SUPERBEE(R) flux limiter function
+**elmfire_level_set**
 - `test_calc_cfl.f90`: Tests CALC_CFL(DT) subroutine that calculates time step based on the Courant–Friedrichs–Lewy condition
-- `test_rk2_integrate.f90`: Tests RK2_INTEGRATE(DT, ISTEP) subroutine that performs 2nd order Runge-Kutta time integration
 - `test_calc_normal_vectors.f90`: Tests CALC_NORMAL_VECTORS(...) subroutine that calculates outward normal directions of the fireline
+- `test_half_superbee.f90`: Tests HALF_SUPERBEE(R) flux limiter function
+- `test_rk2_integrate.f90`: Tests RK2_INTEGRATE(DT, ISTEP) subroutine that performs 2nd order Runge-Kutta time integration
+
+**elmfire_spread_rate**
+- `test_ellipse_ucb.f90`: 
+- `test_hamada.f90`: 
+- `test_surface_spread_rate.f90`: 
+
+**elmfire_subs**
+- `test_icol_from_x.f90`: 
 
 
 ## Unit-Dependent Testing
@@ -43,7 +52,7 @@ but are still small enough to be ran as a unit.
 - `test_limit_gradients.f90`: Tests LIMIT_GRADIENTS(...) subroutine that approximates spatial gradients
 
 ## Component Testing
-
+At this testing level, we start encorporating testing procedures that follow published works
 
 
 ## Integration Testing

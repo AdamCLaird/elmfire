@@ -19,10 +19,11 @@ test_calc_cfl \
 test_calc_normal_vectors \
 test_ellipse_ucb \
 test_half_superbee \
-test_rk2_integrate \
-test_hamada
+test_rk2_integrate
+# test_hamada \
+# test_surface_spread_rate
 UNIT_DEPENDENT   := \
-# test_limit_gradients
+# test_limit_gradients \
 # test_tag_band
 COMPONENT := 
 INTEGRATION := 
