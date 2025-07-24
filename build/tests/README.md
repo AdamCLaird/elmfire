@@ -40,6 +40,7 @@ These functions/subroutines have dependencies on other functions/subroutines,
 but are still small enough to be ran as a unit.
 
 - `test_tag_band.f90`: Tests TAG_BAND(...) subroutine that tags cells for narrow banded solver
+- `test_limit_gradients.f90`: Tests LIMIT_GRADIENTS(...) subroutine that approximates spatial gradients
 
 ## Component Testing
 

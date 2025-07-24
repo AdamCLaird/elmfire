@@ -19,9 +19,11 @@ test_calc_cfl \
 test_calc_normal_vectors \
 test_ellipse_ucb \
 test_half_superbee \
-test_rk2_integrate 
+test_rk2_integrate \
+test_hamada
 UNIT_DEPENDENT   := \
-test_tag_band
+# test_limit_gradients
+# test_tag_band
 COMPONENT := 
 INTEGRATION := 
 REGRESSION := 

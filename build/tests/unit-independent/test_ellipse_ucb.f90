@@ -1,5 +1,5 @@
 !> test_ellipse_ucb.f90
-!! Unit test for subroutine CALC_NORMAL_VECTORS(...) in elmfire_level_set.f90
+!! Unit test for subroutine CALC_NORMAL_VECTORS(...) in elmfire_spread_rate.f90
 !! Updated: 07-22-2025
 
 ! *****************************************************************************
