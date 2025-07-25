@@ -13,7 +13,6 @@ IMPLICIT NONE
 ! Locals
 INTEGER :: NFAIL = 0
 REAL :: YLL, CELL, Y
-INTEGER :: EXPECTED
 
 PRINT *, 'TESTING IROW_FROM_Y...'
 
@@ -40,6 +39,7 @@ CALL CHECK(160.0, 3)        ! exactly at boundary between cell 3 and 4
 CALL CHECK(99.9, 0)         ! below domain
 CALL CHECK(200.1, 6)        ! above domain
 
+! Check outputs and print results
 IF (NFAIL == 0) THEN
     PRINT *, 'PASS: ALL TESTS PASSED.'
 ELSE
@@ -52,9 +52,9 @@ CONTAINS
 ! =============================================================================
 SUBROUTINE CHECK(Y, EXPECTED)
 ! =============================================================================
-REAL, INTENT(IN) :: Y
+REAL, INTENT(IN) :: Y           ! Inputs
 INTEGER, INTENT(IN) :: EXPECTED
-INTEGER :: RESULT
+INTEGER :: RESULT               ! Locals
 
 RESULT = IROW_FROM_Y(Y, YLL, CELL)
 IF (RESULT /= EXPECTED) THEN

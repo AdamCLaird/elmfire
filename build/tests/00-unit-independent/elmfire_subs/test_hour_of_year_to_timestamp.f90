@@ -13,7 +13,6 @@ IMPLICIT NONE
 ! Locals
 CHARACTER(16) :: RESULT, EXPECTED
 INTEGER :: NFAIL = 0, YEAR, HOUR
-REAL, PARAMETER :: TOL = 1.0E-6
 
 PRINT *, 'TESTING HOUR_OF_YEAR_TO_TIMESTAMP...'
 
@@ -33,9 +32,9 @@ CALL CHECK(2025, 2880,  '2025-04-30 00:00')
 CALL CHECK(2025, 3624,  '2025-05-31 00:00')
 
 ! Edge Check -------------------------------------------------------------------
-CALL CHECK(2024, 1439,  '2024-02-29 23:00')  ! last second of Feb in leap year
+CALL CHECK(2024, 1439,  '2024-02-29 23:00')  ! Last second of Feb in leap year
 
-! Final results
+! Check outputs and print results
 IF (NFAIL == 0) THEN
     PRINT *, 'PASS: ALL TESTS PASSED.'
 ELSE
@@ -53,9 +52,8 @@ CHARACTER(16), INTENT(IN) :: EXPECTED
 CHARACTER(16) :: RESULT                 ! Locals
 
 RESULT = HOUR_OF_YEAR_TO_TIMESTAMP(YEAR, HOUR)
-
 IF (TRIM(RESULT) /= TRIM(EXPECTED)) THEN
-    PRINT *, 'FAIL: YEAR=', YEAR, ' HOUR=', HOUR, ' -> ', TRIM(RESULT), ' (expected ', TRIM(EXPECTED), ')'
+    PRINT *, 'FAIL: YEAR=',YEAR,' HOUR=',HOUR,' EXPECTED=', TRIM(EXPECTED),' GOT=', TRIM(RESULT)
     NFAIL = NFAIL + 1
 END IF
 ! ==============================================================================

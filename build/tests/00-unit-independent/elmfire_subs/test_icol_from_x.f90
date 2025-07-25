@@ -13,11 +13,10 @@ IMPLICIT NONE
 ! Locals
 INTEGER :: NFAIL = 0
 REAL :: XLL, CELL, X
-INTEGER :: EXPECTED
 
 PRINT *, 'TESTING ICOL_FROM_X...'
 
-! Test on basic inputs
+! Basic inputs
 XLL = 100.0
 CELL = 20.0
 
@@ -26,7 +25,7 @@ CALL CHECK(110.0, 1)        ! center of cell 1
 CALL CHECK(125.0, 2)        ! inside cell 2
 CALL CHECK(143.0, 3)        ! inside cell 3
 CALL CHECK(176.3, 4)        ! inside cell 4
-CALL CHECK(183.0, 5)          ! inside cell 5
+CALL CHECK(183.0, 5)         ! inside cell 5
 
 ! Edge Cases -------------------------------------------------------------------
 CALL CHECK(100.0, 0)        ! exactly at lower bound
@@ -40,6 +39,7 @@ CALL CHECK(160.0, 3)        ! exactly at boundary between cell 3 and 4
 CALL CHECK(99.9, 0)         ! below domain
 CALL CHECK(200.1, 6)        ! above domain
 
+! Check outputs and print results
 IF (NFAIL == 0) THEN
     PRINT *, 'PASS: ALL TESTS PASSED.'
 ELSE

@@ -14,7 +14,6 @@ IMPLICIT NONE
 INTEGER :: NFAIL = 0
 REAL :: YLL, CELL, Y
 INTEGER :: IROW
-REAL :: EXPECTED
 
 PRINT *, 'TESTING Y_FROM_IROW...'
 
@@ -32,6 +31,7 @@ CALL CHECK(5, 190.0)        ! center of cell 5
 CALL CHECK(0, 90.0)         ! center of cell below lower bound
 CALL CHECK(6, 210.0)        ! center of cell above upper bound
 
+! Check outputs and print results
 IF (NFAIL == 0) THEN
     PRINT *, 'PASS: ALL TESTS PASSED.'
 ELSE
