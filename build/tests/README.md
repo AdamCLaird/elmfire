@@ -22,7 +22,6 @@ produce consistent and appropriate outputs for fixed inputs.
 
 
 # Testing Details
-
 Here we provide details of the current tests in the suite. 
 
 ## Unit-Independent Testing
@@ -30,10 +29,13 @@ These functions/subroutines are independent of other functions/subroutines and
 can be ran in isolation. This is the lowest level to test. 
 
 **elmfire_level_set**
-- `test_calc_cfl.f90`: Tests CALC_CFL(DT) subroutine that calculates time step based on the Courant–Friedrichs–Lewy condition
-- `test_calc_normal_vectors.f90`: Tests CALC_NORMAL_VECTORS(...) subroutine that calculates outward normal directions of the fireline
+- `test_calc_cfl.f90`: Tests CALC_CFL(DT) subroutine that calculates time step 
+based on the Courant–Friedrichs–Lewy condition
+- `test_calc_normal_vectors.f90`: Tests CALC_NORMAL_VECTORS(...) subroutine that
+ calculates outward normal directions of the fireline
 - `test_half_superbee.f90`: Tests HALF_SUPERBEE(R) flux limiter function
-- `test_rk2_integrate.f90`: Tests RK2_INTEGRATE(DT, ISTEP) subroutine that performs 2nd order Runge-Kutta time integration
+- `test_rk2_integrate.f90`: Tests RK2_INTEGRATE(DT, ISTEP) subroutine that 
+performs 2nd order Runge-Kutta time integration
 
 **elmfire_spread_rate**
 - `test_ellipse_ucb.f90`: 
@@ -48,29 +50,31 @@ can be ran in isolation. This is the lowest level to test.
 These functions/subroutines have dependencies on other functions/subroutines,
 but are still small enough to be ran as a unit.
 
-- `test_tag_band.f90`: Tests TAG_BAND(...) subroutine that tags cells for narrow banded solver
-- `test_limit_gradients.f90`: Tests LIMIT_GRADIENTS(...) subroutine that approximates spatial gradients
+**elmfire_level_set**
+- `test_tag_band.f90`: Tests TAG_BAND(...) subroutine that tags cells for 
+narrow banded solver
+- `test_limit_gradients.f90`: Tests LIMIT_GRADIENTS(...) subroutine that 
+approximates spatial gradients
+
+**elmfire_spread_rate**
 
 ## Component Testing
-At this testing level, we start encorporating testing procedures that follow published works
+At this level, we start encorporating testing procedures that follow published 
+works. Here, we test individual physics models like wildifire spread, spotting, 
+etc. Work in progress...
 
 
 ## Integration Testing
-
-
+At this level, we test the functionality of the entire model to problems of 
+interest. This includes running forecasts, hindcasts, fire potential, and risk 
+analyses. Work in progress...
 
 
 ## Regression Testing
-
-
-
+Work in progress...
 
 ## Performance Testing
-
-
-
-
-
+Work in progress...
 
 # References
 [1] G. Wilson et al., “Best Practices for Scientific Computing,” PLoS Biol., 
@@ -80,4 +84,5 @@ vol. 12, no. 1, p. e1001745, Jan. 2014, doi: 10.1371/journal.pbio.1001745.
 Practices,” Lambda Test. [Online]. 
 Available: https://www.lambdatest.com/blog/types-of-automation-testing/
 
-Created by [Adam Laird](mailto:adam.laird@berkeley.edu)
+
+Questions? Blame [Adam Laird](mailto:adam.laird@berkeley.edu)
