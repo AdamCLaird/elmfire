@@ -38,12 +38,12 @@ based on the Courant–Friedrichs–Lewy condition
 performs 2nd order Runge-Kutta time integration
 
 **elmfire_spread_rate**
-- `test_ellipse_ucb.f90`: 
-- `test_hamada.f90`: 
-- `test_surface_spread_rate.f90`: 
+- ~~`test_ellipse_ucb.f90`: ~~
+- ~~`test_hamada.f90`: ~~
+- ~~`test_surface_spread_rate.f90`: ~~
 
 **elmfire_subs**
-- `test_icol_from_x.f90`: 
+- ~~`test_icol_from_x.f90`: ~~
 
 
 ## Unit-Dependent Testing
@@ -51,10 +51,10 @@ These functions/subroutines have dependencies on other functions/subroutines,
 but are still small enough to be ran as a unit.
 
 **elmfire_level_set**
-- `test_tag_band.f90`: Tests TAG_BAND(...) subroutine that tags cells for 
-narrow banded solver
-- `test_limit_gradients.f90`: Tests LIMIT_GRADIENTS(...) subroutine that 
-approximates spatial gradients
+- ~~`test_tag_band.f90`: Tests TAG_BAND(...) subroutine that tags cells for ~~
+~~narrow banded solver~~
+- ~~`test_limit_gradients.f90`: Tests LIMIT_GRADIENTS(...) subroutine that ~~
+~~approximates spatial gradients~~
 
 **elmfire_spread_rate**
 

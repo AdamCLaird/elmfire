@@ -37,7 +37,17 @@ VPATH := ../source \
 	test_surface_spread_rate
 
 00-UNIT_INDEPENDENT/ELMFIRE_SUBS := \
-	test_icol_from_x
+	test_bilinear_interpolate \
+	test_erfinv \
+	test_get_bilinear_interpolate_coeffs \
+	test_hour_of_year_to_timestamp \
+	test_icol_from_x \
+	test_irow_from_y \
+	itest_map_fine_to_coarse \
+	test_ux_from_wswd \
+	test_uy_from_wswd \
+	test_x_from_icol \
+	test_y_from_irow
 
 01-UNIT_DEPENDENT/ELMFIRE_LEVEL_SET := \
 	test_limit_gradients \

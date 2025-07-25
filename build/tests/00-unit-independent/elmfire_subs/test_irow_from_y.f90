@@ -1,9 +1,9 @@
-!> test_icol_from_x.f90
-!! Unit test for function ICOL_FROM_X in elmfire_subs.f90
+!> test_irow_from_y.f90
+!! Unit test for function IROW_FROM_Y in elmfire_subs.f90
 !! Updated: 07-24-2025
 
 ! *****************************************************************************
-PROGRAM TEST_ICOL_FROM_X
+PROGRAM TEST_IROW_FROM_Y
 ! *****************************************************************************
 
 USE ELMFIRE_SUBS
@@ -12,13 +12,13 @@ IMPLICIT NONE
 
 ! Locals
 INTEGER :: NFAIL = 0
-REAL :: XLL, CELL, X
+REAL :: YLL, CELL, Y
 INTEGER :: EXPECTED
 
-PRINT *, 'TESTING ICOL_FROM_X...'
+PRINT *, 'TESTING IROW_FROM_Y...'
 
-! Test on basic inputs
-XLL = 100.0
+! Test grid setup
+YLL  = 100.0
 CELL = 20.0
 
 ! Standard Checks --------------------------------------------------------------
@@ -26,7 +26,7 @@ CALL CHECK(110.0, 1)        ! center of cell 1
 CALL CHECK(125.0, 2)        ! inside cell 2
 CALL CHECK(143.0, 3)        ! inside cell 3
 CALL CHECK(176.3, 4)        ! inside cell 4
-CALL CHECK(183.0, 5)          ! inside cell 5
+CALL CHECK(183.0, 5)        ! inside cell 5
 
 ! Edge Cases -------------------------------------------------------------------
 CALL CHECK(100.0, 0)        ! exactly at lower bound
@@ -50,15 +50,15 @@ END IF
 CONTAINS
 
 ! =============================================================================
-SUBROUTINE CHECK(X, EXPECTED)
+SUBROUTINE CHECK(Y, EXPECTED)
 ! =============================================================================
-REAL, INTENT(IN) :: X               ! Inputs
+REAL, INTENT(IN) :: Y
 INTEGER, INTENT(IN) :: EXPECTED
-INTEGER :: RESULT                   ! Locals
+INTEGER :: RESULT
 
-RESULT = ICOL_FROM_X(X, XLL, CELL)
+RESULT = IROW_FROM_Y(Y, YLL, CELL)
 IF (RESULT /= EXPECTED) THEN
-    PRINT *, 'FAIL: X=', X, ' EXPECTED=', EXPECTED, ' GOT=', RESULT
+    PRINT *, 'FAIL: Y=', Y, ' EXPECTED=', EXPECTED, ' GOT=', RESULT
     NFAIL = NFAIL + 1
 END IF
 ! =============================================================================
@@ -66,5 +66,5 @@ END SUBROUTINE CHECK
 ! =============================================================================
 
 ! *****************************************************************************
-END PROGRAM TEST_ICOL_FROM_X
+END PROGRAM TEST_IROW_FROM_Y
 ! *****************************************************************************
