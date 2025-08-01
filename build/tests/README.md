@@ -18,7 +18,13 @@ workloads.
 
 Further description of these types can be found in the reference [2]. The 
 purpose of functional testing is to confirm the program or its subsections 
-produce consistent and appropriate outputs for fixed inputs. 
+produce consistent and appropriate outputs for fixed inputs. Some common types 
+of black-box tests used are given below. 
+
+1. *Nominal Cases* -- Ensure correct behavior under typical inputs
+2. *Edge/Boundary and Near-Boundary Cases* -- Catch off-by-one errors
+3. *Offset and Resolution Mismatch Cases* -- Test raster utility functions
+4. *Clipping Cases* -- Verify spatial robustness
 
 
 # Testing Details
@@ -43,8 +49,17 @@ performs 2nd order Runge-Kutta time integration
 - ~~`test_surface_spread_rate.f90`: ~~
 
 **elmfire_subs**
-- ~~`test_icol_from_x.f90`: ~~
-
+- `test_bilinear_interpolate.f90`: 
+- `test_erfinv.f90`: 
+- `test_get_bilinear_interpolate_coeffs.f90`: 
+- `test_hour_of_year_to_timestamp.f90`: 
+- `test_icol_from_x.f90`: 
+- `test_irow_from_y.f90`: 
+- `test_map_fine_to_coarse.f90`: 
+- `test_ux_from_wswd.f90`: 
+- `test_uy_from_wswd.f90`: 
+- `test_x_from_icol.f90`: 
+- `test_y_from_irow.f90`: 
 
 ## Unit-Dependent Testing
 These functions/subroutines have dependencies on other functions/subroutines,
