@@ -34,32 +34,45 @@ Here we provide details of the current tests in the suite.
 These functions/subroutines are independent of other functions/subroutines and 
 can be ran in isolation. This is the lowest level to test. 
 
+**elmfire_init**
+- `test_calc_wind_adjustment_factor_single`
+
 **elmfire_level_set**
 - `test_calc_cfl.f90`: Tests CALC_CFL(DT) subroutine that calculates time step 
-based on the Courant–Friedrichs–Lewy condition
+based on the Courant–Friedrichs–Lewy condition.
 - `test_calc_normal_vectors.f90`: Tests CALC_NORMAL_VECTORS(...) subroutine that
- calculates outward normal directions of the fireline
-- `test_half_superbee.f90`: Tests HALF_SUPERBEE(R) flux limiter function
+ calculates outward normal directions of the fireline.
+- `test_half_superbee.f90`: Tests HALF_SUPERBEE(R) flux limiter function.
 - `test_rk2_integrate.f90`: Tests RK2_INTEGRATE(DT, ISTEP) subroutine that 
-performs 2nd order Runge-Kutta time integration
+performs 2nd order Runge-Kutta time integration.
+
+**elmfire_spotting**
+- `test_set_spotting_parameters.f90`
 
 **elmfire_spread_rate**
-- ~~`test_ellipse_ucb.f90`: ~~
-- ~~`test_hamada.f90`: ~~
+- `test_ellipse_ucb.f90`: Tests ELLIPSE_UCB(...) subroutine that calculates the 
+ellipse geometry for the urban spread model.
+- `test_hamada.f90`: Tests HAMADA(C) subroutine that calculates urban spread 
+rate. 
 - ~~`test_surface_spread_rate.f90`: ~~
 
 **elmfire_subs**
-- `test_bilinear_interpolate.f90`: 
-- `test_erfinv.f90`: 
-- `test_get_bilinear_interpolate_coeffs.f90`: 
-- `test_hour_of_year_to_timestamp.f90`: 
-- `test_icol_from_x.f90`: 
-- `test_irow_from_y.f90`: 
-- `test_map_fine_to_coarse.f90`: 
-- `test_ux_from_wswd.f90`: 
-- `test_uy_from_wswd.f90`: 
-- `test_x_from_icol.f90`: 
-- `test_y_from_irow.f90`: 
+- `test_bilinear_interpolate.f90`
+- `test_erfinv.f90`
+- `test_get_bilinear_interpolate_coeffs.f90`
+- `test_hour_of_year_to_timestamp.f90`
+- `test_icol_fine_to_coarse.f90`
+- `test_icol_from_x.f90`
+- `test_irow_from_y.f90`
+- `test_locate.f90`
+- `test_map_fine_to_coarse.f90`
+- `test_sunrise_sunset_calcs.f90`
+- `test_ux_from_wswd.f90`
+- `test_uy_from_wswd.f90`
+- `test_wx_icol_from_analysis_ix.f90`
+- `test_wx_irow_from_analysis_iy.f90`
+- `test_x_from_icol.f90`
+- `test_y_from_irow.f90`
 
 ## Unit-Dependent Testing
 These functions/subroutines have dependencies on other functions/subroutines,

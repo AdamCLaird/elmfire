@@ -13,7 +13,9 @@ FFLAGS := -O0 -g -Wall -cpp -ffree-line-length-none -D_WUI \
 BIN_DIR := bin
 VPATH := ../source \
 	./00-unit-independent \
+		./00-unit-independent/elmfire_init \
 		./00-unit-independent/elmfire_level_set \
+		./00-unit-independent/elmfire_spotting \
 		./00-unit-independent/elmfire_spread_rate \
 		./00-unit-independent/elmfire_subs \
 	./01-unit-dependent \
@@ -25,11 +27,17 @@ VPATH := ../source \
 	./05-performance
 
 # List of test scripts by dir (append for new tests)
+00-UNIT_INDEPENDENT/ELMFIRE_INIT := \
+	test_calc_wind_adjustment_factor_single
+
 00-UNIT_INDEPENDENT/ELMFIRE_LEVEL_SET := \
 	test_calc_cfl \
 	test_calc_normal_vectors \
 	test_half_superbee \
 	test_rk2_integrate
+
+00-UNIT_INDEPENDENT/ELMFIRE_SPOTTING := \
+	test_set_spotting_parameters
 
 00-UNIT_INDEPENDENT/ELMFIRE_SPREAD_RATE := \
 	test_ellipse_ucb \
@@ -41,11 +49,16 @@ VPATH := ../source \
 	test_erfinv \
 	test_get_bilinear_interpolate_coeffs \
 	test_hour_of_year_to_timestamp \
+	test_icol_fine_to_coarse.f90 \
 	test_icol_from_x \
 	test_irow_from_y \
-	itest_map_fine_to_coarse \
+	test_locate \
+	test_map_fine_to_coarse \
+	test_sunrise_sunset_calcs \
 	test_ux_from_wswd \
 	test_uy_from_wswd \
+	test_wx_icol_from_analysis_ix \
+	test_wx_irow_from_analysis_iy \
 	test_x_from_icol \
 	test_y_from_irow
 
@@ -65,7 +78,9 @@ VPATH := ../source \
 
 # Compile all test files
 ALL_TEST_NAMES := \
+	$(00-UNIT_INDEPENDENT/ELMFIRE_INIT) \
 	$(00-UNIT_INDEPENDENT/ELMFIRE_LEVEL_SET) \
+	$(00-UNIT_INDEPENDENT/ELMFIRE_SPOTTING) \
 	$(00-UNIT_INDEPENDENT/ELMFIRE_SPREAD_RATE) \
 	$(00-UNIT_INDEPENDENT/ELMFIRE_SUBS) \
 	$(01-UNIT_DEPENDENT/ELMFIRE_LEVEL_SET) \
@@ -85,7 +100,8 @@ SOURCE := \
   elmfire_spotting_superseded.f90 \
   elmfire_io.f90 \
   elmfire_spread_rate.f90 \
-  elmfire_level_set.f90
+  elmfire_level_set.f90 \
+  elmfire_init.f90
 SOURCE_OBJ := $(addprefix $(BIN_DIR)/, $(SOURCE:.f90=.o))
 
 # Make bin directory

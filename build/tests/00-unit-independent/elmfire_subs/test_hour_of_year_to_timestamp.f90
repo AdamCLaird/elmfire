@@ -55,6 +55,8 @@ RESULT = HOUR_OF_YEAR_TO_TIMESTAMP(YEAR, HOUR)
 IF (TRIM(RESULT) /= TRIM(EXPECTED)) THEN
     PRINT *, 'FAIL: YEAR=',YEAR,' HOUR=',HOUR,' EXPECTED=', TRIM(EXPECTED),' GOT=', TRIM(RESULT)
     NFAIL = NFAIL + 1
+ELSE
+    PRINT *, 'PASS: ', EXPECTED
 END IF
 ! ==============================================================================
 END SUBROUTINE CHECK

@@ -103,8 +103,10 @@ INTEGER, INTENT(INOUT) :: NFAIL         ! In/Out
 REAL, PARAMETER :: EPSILON = 1.0E-6     ! Locals
 
 IF (ABS(RESULT - EXPECTED) > EPSILON) THEN
-    PRINT *, 'FAIL: ', LABEL, '=', ' EXPECTED=', EXPECTED, ' GOT=', RESULT
-    NFAIL = NFAIL + 1
+   PRINT *, 'FAIL: ', LABEL, '=', ' EXPECTED=', EXPECTED, ' GOT=', RESULT
+   NFAIL = NFAIL + 1
+ELSE
+   PRINT *, 'PASS: ', LABEL
 END IF
 ! =============================================================================
 END SUBROUTINE CHECK

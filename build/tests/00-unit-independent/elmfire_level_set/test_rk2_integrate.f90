@@ -79,6 +79,8 @@ CALL RK2_INTEGRATE(DT, ISTEP)
 IF (ABS(PHIP(IX,IY) - EXPECTED) > EPSILON) THEN
     PRINT *, 'FAIL: ', LABEL, 'DT=', DT, ' EXPECTED=', EXPECTED
     NFAIL = NFAIL + 1
+ELSE
+    PRINT *, 'PASS: ', LABEL
 END IF
 ! =============================================================================
 END SUBROUTINE CHECK

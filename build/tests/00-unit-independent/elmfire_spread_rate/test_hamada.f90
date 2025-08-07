@@ -92,13 +92,17 @@ LOW = C%LOW
 VS  = (VD + VU)/(2*LOW)
 
 IF (VD <= 0 .OR. VU <= 0 .OR. LOW <= 0) THEN
-    PRINT *, 'FAIL: ', LABEL, 'VELOCITY_DMS=', VD, 'VBACK=', VU, 'LOW=', LOW
-    NFAIL = NFAIL + 1
+  PRINT *, 'FAIL: ', LABEL, 'VELOCITY_DMS=', VD, 'VBACK=', VU, 'LOW=', LOW
+  NFAIL = NFAIL + 1
+ELSE
+  PRINT *, 'PASS: ', LABEL, '...Valid outputs'
 END IF
 
 IF (LOW > 10.0) THEN
     PRINT *, 'FAIL: ', LABEL, 'LOW exceeds bounds: LOW=', LOW
     NFAIL = NFAIL + 1
+ELSE
+    PRINT *, 'PASS: ', LABEL, '...LOW within bounds'
 END IF
 ! =============================================================================
 END SUBROUTINE CHECK

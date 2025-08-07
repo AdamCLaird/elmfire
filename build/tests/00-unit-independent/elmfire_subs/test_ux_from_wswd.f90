@@ -56,6 +56,8 @@ IF (ABS(RESULT - EXPECTED) > TOL) THEN
     PRINT *, 'FAIL: WS_VAL=', WS_VAL, ' WD_VAL=', WD_VAL,  &
             ' EXPECTED', EXPECTED, ' GOT=', RESULT
     NFAIL = NFAIL + 1
+ELSE
+    PRINT *, 'PASS: WS_VAL=', WS_VAL, ' WD_VAL=', WD_VAL
 END IF
 ! =============================================================================
 END SUBROUTINE CHECK

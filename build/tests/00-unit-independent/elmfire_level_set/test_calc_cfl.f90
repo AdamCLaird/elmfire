@@ -79,6 +79,8 @@ CALL CALC_CFL(DT)                   ! Call subroutine & check values
 IF (ABS(DT - EXPECTED) > EPSILON) THEN
     PRINT *, 'FAIL: ', LABEL, 'DT=', DT, ' EXPECTED=', EXPECTED
     NFAIL = NFAIL + 1
+ELSE
+    PRINT *, 'PASS: ', LABEL
 END IF
 
 ! =============================================================================

@@ -70,6 +70,8 @@ CALL ELLIPSE_UCB(C)
 IF (C%ELLIPSE_PARAMETERS%FOREST_FACTOR /= EXPECTED_FOREST) THEN
   PRINT *, 'FAIL: ', LABEL, 'Incorrect forest factor: ', C%ELLIPSE_PARAMETERS%FOREST_FACTOR
   NFAIL = NFAIL + 1
+ELSE
+  PRINT *, 'PASS: ', LABEL, '...FOREST_FACTOR'
 END IF
 
 ! Reasonable bounds check
@@ -80,11 +82,8 @@ MINOR = C%ELLIPSE_PARAMETERS%ELLIPSE_MINOR
 IF (MAJOR <= 0.0 .OR. MINOR < 0.0) THEN
   PRINT *, 'FAIL: ', LABEL, 'Invalid ellipse dimensions: MAJOR=', MAJOR, ' MINOR=', MINOR
   NFAIL = NFAIL + 1
-END IF
-
-! Minor should be no less than major/2 unless ECC is very high
-IF (MINOR < MAJOR/4.0) THEN
-  PRINT *, 'WARN: ', LABEL, ', unusually small MINOR axis: ', MINOR
+ELSE
+  PRINT *, 'PASS: ', LABEL, '...Valid ellipse dimensions'
 END IF
 
 ! =============================================================================

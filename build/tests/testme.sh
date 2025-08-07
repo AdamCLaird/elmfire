@@ -10,7 +10,9 @@ TARGET=$2
 
 BIN="bin"
 TEST_DIRS=( \
+    "00-unit-independent/elmfire_init" \
     "00-unit-independent/elmfire_level_set" \
+    "00-unit-independent/elmfire_spotting" \
     "00-unit-independent/elmfire_spread_rate" \
     "00-unit-independent/elmfire_subs" \
     "01-unit-dependent/elmfire_level_set" \

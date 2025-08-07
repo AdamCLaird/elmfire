@@ -70,6 +70,8 @@ DO I = 1, SIZE(ACTUAL)
     IF (ACTUAL(I) /= EXPECTED(I)) THEN
         PRINT *, 'FAIL: ', TRIM(LABEL), '(', I, ') =', ACTUAL(I), ' (expected ', EXPECTED(I), ')'
         NFAIL = NFAIL + 1
+    ELSE
+        PRINT *, 'PASS: ', TRIM(LABEL)
     END IF
 END DO
 ! =============================================================================

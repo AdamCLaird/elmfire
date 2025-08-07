@@ -21,23 +21,23 @@ YLL  = 100.0
 CELL = 20.0
 
 ! Standard Checks --------------------------------------------------------------
-CALL CHECK(110.0, 1)        ! center of cell 1
-CALL CHECK(125.0, 2)        ! inside cell 2
-CALL CHECK(143.0, 3)        ! inside cell 3
-CALL CHECK(176.3, 4)        ! inside cell 4
-CALL CHECK(183.0, 5)        ! inside cell 5
+CALL CHECK(110.0, 1, 'Nominal Case 1')      ! center of cell 1
+CALL CHECK(125.0, 2, 'Nominal Case 2')      ! inside cell 2
+CALL CHECK(143.0, 3, 'Nominal Case 3')      ! inside cell 3
+CALL CHECK(176.3, 4, 'Nominal Case 4')      ! inside cell 4
+CALL CHECK(183.0, 5, 'Nominal Case 5')      ! inside cell 5
 
 ! Edge Cases -------------------------------------------------------------------
-CALL CHECK(100.0, 0)        ! exactly at lower bound
-CALL CHECK(100.01, 1)       ! just above lower bound
-CALL CHECK(200.0, 5)        ! exactly at upper bound
-CALL CHECK(199.9, 5)        ! just below upper bound
+CALL CHECK(100.0, 0, 'Lower Bound')         ! exactly at lower bound
+CALL CHECK(100.01, 1, 'Above Lower Bound')  ! just above lower bound
+CALL CHECK(200.0, 5, 'Upper Bound')         ! exactly at upper bound
+CALL CHECK(199.9, 5, 'Below Upper Bound')   ! just below upper bound
 
-CALL CHECK(120.0, 1)        ! exactly at boundary between cell 1 and 2
-CALL CHECK(160.0, 3)        ! exactly at boundary between cell 3 and 4
+CALL CHECK(120.0, 1, 'Boundary Case 1')     ! exactly at boundary between cell 1 and 2
+CALL CHECK(160.0, 3, 'Boundary Case 2')     ! exactly at boundary between cell 3 and 4
 
-CALL CHECK(99.9, 0)         ! below domain
-CALL CHECK(200.1, 6)        ! above domain
+CALL CHECK(99.9, 0, 'Below Domain')         ! below domain
+CALL CHECK(200.1, 6,'Above Domain')         ! above domain
 
 ! Check outputs and print results
 IF (NFAIL == 0) THEN
@@ -50,16 +50,19 @@ END IF
 CONTAINS
 
 ! =============================================================================
-SUBROUTINE CHECK(Y, EXPECTED)
+SUBROUTINE CHECK(Y, EXPECTED, LABEL)
 ! =============================================================================
 REAL, INTENT(IN) :: Y           ! Inputs
 INTEGER, INTENT(IN) :: EXPECTED
+CHARACTER(*), INTENT(IN) :: LABEL
 INTEGER :: RESULT               ! Locals
 
 RESULT = IROW_FROM_Y(Y, YLL, CELL)
 IF (RESULT /= EXPECTED) THEN
-    PRINT *, 'FAIL: Y=', Y, ' EXPECTED=', EXPECTED, ' GOT=', RESULT
+    PRINT *, 'FAIL: ', LABEL, ' Y=', Y, ' EXPECTED=', EXPECTED, ' GOT=', RESULT
     NFAIL = NFAIL + 1
+ELSE
+    PRINT *, 'PASS: ', LABEL
 END IF
 ! =============================================================================
 END SUBROUTINE CHECK
